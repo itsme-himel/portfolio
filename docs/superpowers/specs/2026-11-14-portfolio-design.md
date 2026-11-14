@@ -25,7 +25,7 @@ Buzzwords or filler sentences. Empty sections. Anything that looks like a templa
 - Phone: only a Menu button shows at the top of the page; once the name scrolls away a bar appears behind it with the name and current section; the nav and the four links slide in from the right as a panel. Without JavaScript the nav stays in the page.
   wide screens; content column on the right. Below ~640px the sidebar becomes a header and the nav
   a wrapped row of links.
-- Section order: About, Experience, Research, Education, Projects, Certifications, Activities.
+- Section order: About, Experience, Research, Education, Projects, Skills, Certifications, Activities. Skills is four labelled rows using the same library labels as the project tech stacks; no bars or ratings.
 - Entries: title, organisation, date right-aligned in monospace, then up to three plain bullets.
   Projects are full-width cards: title, one-line summary, two or three points, then a "Tech stack" row of library labels under a rule.
 - Thesis: its own Research section, marked "In progress", with working title, supervisor and
