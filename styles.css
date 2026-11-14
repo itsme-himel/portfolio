@@ -45,7 +45,8 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .grid h3 { font-size: 1rem; font-weight: 600; }
 .grid p { color: var(--muted); margin-top: .25rem; }
-.grid .tags { font: .75rem/1.6 var(--mono); margin-top: .5rem; }
+.tags { font: 400 .75rem/1.6 var(--mono); color: var(--muted); }
+.grid p.tags { margin-top: .5rem; }
 
 .plain { display: grid; gap: .625rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .plain li { display: flex; justify-content: space-between; align-items: baseline; gap: .125rem 1rem; flex-wrap: wrap; }
