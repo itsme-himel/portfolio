@@ -154,7 +154,7 @@ const links = [...document.querySelectorAll('nav a')];
 function spy() {
   const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
   const current = atEnd ? sections.at(-1)
-    : sections.findLast(s => s.getBoundingClientRect().top <= innerHeight * 0.4) || sections[0];
+    : sections.findLast(s => s.getBoundingClientRect().top <= 120) || sections[0];
   for (const a of links) {
     if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'location');
     else a.removeAttribute('aria-current');
