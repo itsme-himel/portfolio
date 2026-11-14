@@ -47,6 +47,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .grid p { color: var(--muted); margin-top: .25rem; }
 .tags { font: 400 .75rem/1.6 var(--mono); color: var(--muted); }
 .grid p.tags { margin-top: .5rem; }
+.grid h3 .tags { white-space: nowrap; }
 
 .plain { display: grid; gap: .625rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .plain li { display: flex; justify-content: space-between; align-items: baseline; gap: .125rem 1rem; flex-wrap: wrap; }
