@@ -13,6 +13,7 @@ body { margin: 0; background: var(--bg); color: var(--fg); font: 1rem/1.6 var(--
 h1, h2, h3, p, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--fg); }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .skip { position: absolute; left: -999rem; }
@@ -25,16 +26,19 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 h1 { font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
 .role { color: var(--muted); margin-top: .5rem; font-size: .9375rem; }
 nav ol { display: grid; }
-nav a { display: block; padding: .3rem 0; color: var(--muted); text-decoration: none; }
-nav a:hover { color: var(--fg); text-decoration: underline; }
-nav a[aria-current] { color: var(--fg); font-weight: 500; text-decoration: underline 2px var(--accent); text-underline-offset: 6px; }
-@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+/* the underline is always there and only changes colour, so it can fade */
+nav a { display: block; padding: .3rem 0; color: var(--muted); text-decoration: underline 2px transparent; text-underline-offset: 6px; }
+nav a:hover { color: var(--fg); text-decoration-color: var(--line); }
+nav a[aria-current] { color: var(--fg); font-weight: 500; text-decoration-color: var(--accent); }
+/* a sidebar taller than the window would hide its last links for good */
+@media (max-height: 42rem) { .stick { position: static; } }
 
-.contact { display: grid; grid-template-columns: repeat(2, max-content); gap: .5rem 1.5rem; font-size: .875rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.contact { display: grid; grid-template-columns: repeat(2, max-content); gap: 0 1.5rem; font-size: .875rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .contact li:first-child { grid-column: 1 / -1; text-align: center; }
+.contact a { display: inline-block; padding: .25rem 0; } /* 24px+ tap target */
 
 main { padding: 4rem 2.5rem 5rem; display: grid; gap: 3rem; }
-section { display: grid; gap: 1rem; }
+section { display: grid; gap: 1rem; scroll-margin-top: 4rem; }
 h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
 .lede { font-size: 1.0625rem; max-width: 62ch; }
 
@@ -65,10 +69,21 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   .side { border-right: 0; border-bottom: 1px solid var(--line); padding: 2rem 1.25rem; }
   .stick { position: static; gap: 1rem; }
   nav ol { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
-  .contact { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; padding-top: 1rem; }
+  .contact { display: flex; flex-wrap: wrap; gap: 0 1.25rem; padding-top: .75rem; }
   .contact li:first-child { flex-basis: 100%; text-align: left; }
   main { padding: 2rem 1.25rem 3rem; gap: 2.5rem; }
+  section { scroll-margin-top: 1.25rem; }
   .item, .grid { grid-template-columns: 1fr; }
+}
+
+/* Motion: screen only, and only when the reader has not asked for less.
+   .pre is set by the script on sections below the first screen. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  a { transition: color .2s, text-decoration-color .2s; }
+  section, section > * { transition: opacity .4s ease-out, transform .4s ease-out; }
+  section.pre { opacity: 0; transition: none; }
+  section.pre > * { transform: translateY(.5rem); transition: none; }
 }
 
 @media print {

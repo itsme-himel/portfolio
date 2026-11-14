@@ -70,7 +70,7 @@
         <p class="org">AIESEC in Germany · Berlin, Germany</p>
         <ul>
           <li>Recruited candidates and matched them to international internships.</li>
-          <li>Organised career events with universities and partner organisations.</li>
+          <li>Organized career events with universities and partner organizations.</li>
         </ul>
       </article>
     </section>
@@ -84,7 +84,7 @@
         <ul>
           <li>Developing a generative framework that converts game-engine renders into realistic satellite-style imagery.</li>
           <li>Starts from a CycleGAN baseline, reimplementing Zou et al. (<i>Remote Sensing</i>, 2020).</li>
-          <li>Part of a research programme on peace and security monitoring.</li>
+          <li>Part of a research program on peace and security monitoring.</li>
         </ul>
       </article>
     </section>
@@ -176,6 +176,15 @@ for (const e of ['wheel', 'touchmove', 'keydown']) addEventListener(e, () => { c
 addEventListener('scroll', spy, { passive: true });
 addEventListener('resize', spy);
 spy();
+// Sections below the first screen fade in when reached (motion is in the CSS).
+// Reaching one also reveals those before it, so a jump never leaves any hidden.
+if (window.IntersectionObserver) {
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting)
+      for (const s of sections.slice(0, sections.indexOf(e.target) + 1)) { s.classList.remove('pre'); io.unobserve(s); }
+  });
+  for (const s of sections) if (s.getBoundingClientRect().top >= innerHeight) { s.classList.add('pre'); io.observe(s); }
+}
 </script>
 </body>
 </html>
