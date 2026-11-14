@@ -81,14 +81,18 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 /* Phone menu. Needs the script (.js), so without it the nav above stays in the page. */
 @media screen and (max-width: 48rem) {
   section { scroll-margin-top: 4.5rem; }
-  .js .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; position: sticky; top: 0; z-index: 40;
-    padding: .5rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--line); }
-  .where { display: flex; align-items: baseline; min-width: 0; white-space: nowrap; }
-  .where b { font-size: .875rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; max-width: 0; opacity: 0; }
-  .past .where b { max-width: 11rem; opacity: 1; margin-right: .75rem; }
+  /* At the top of the page only the Menu button shows; the bar itself appears once the name has scrolled away (.past). */
+  .js .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; position: fixed; inset: 0 0 auto; z-index: 40;
+    padding: .5rem 1.25rem; background: transparent; border-bottom: 1px solid transparent; }
+  .js.past .bar { background: var(--bg); border-bottom-color: var(--line); }
+  .js .side { padding-top: 1rem; }
+  .js h1 { padding-right: 5.5rem; } /* keeps the name clear of the Menu button */
+  .where { display: flex; align-items: baseline; min-width: 0; white-space: nowrap; opacity: 0; visibility: hidden; }
+  .past .where { opacity: 1; visibility: visible; }
+  .where b { font-size: .875rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; margin-right: .75rem; }
   #bar-section { font: 600 .6875rem/1 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
-  #menu-btn { font: 500 .8125rem/1 var(--mono); color: var(--fg); background: none; border: 1px solid var(--line); border-radius: 4px;
-    padding: .5rem .75rem; min-width: 4.25rem; cursor: pointer; }
+  #menu-btn { font: 500 .8125rem/1 var(--mono); color: var(--fg); border: 1px solid var(--line); border-radius: 4px;
+    padding: .5rem .75rem; min-width: 4.25rem; cursor: pointer; margin-left: auto; background: var(--bg); }
   #menu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   .js nav { position: fixed; inset: 0 0 0 auto; z-index: 30; width: min(18rem, 82vw); overflow-y: auto;
@@ -118,7 +122,9 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   .js.open nav { transition: transform .25s ease; }
   .scrim { transition: opacity .25s ease, visibility 0s .25s; }
   .open .scrim { transition: opacity .25s ease; }
-  .where b { transition: max-width .3s ease, opacity .3s ease, margin .3s ease; }
+  .bar { transition: background-color .25s ease, border-color .25s ease; }
+  .where { transition: opacity .25s ease, visibility 0s .25s; }
+  .past .where { transition: opacity .25s ease; }
 }
 
 @media print {
