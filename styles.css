@@ -53,12 +53,12 @@ nav a[aria-current] { color: var(--fg); font-weight: 500; text-decoration-color:
 main { padding: 4rem 2.5rem 5rem; display: grid; gap: 3rem; }
 section { display: grid; gap: 1rem; scroll-margin-top: 4rem; }
 h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
-.lede { font-size: 1.0625rem; max-width: 62ch; }
+.lede { font-size: 1.0625rem; }
 
 .item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .125rem 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .item h3 { font-size: 1rem; font-weight: 600; }
 .item .org { grid-column: 1 / -1; }
-.item ul { grid-column: 1 / -1; margin-top: .375rem; display: grid; gap: .25rem; max-width: 62ch; }
+.item ul { grid-column: 1 / -1; margin-top: .375rem; display: grid; gap: .25rem; }
 .item li, .points li { padding-left: 1rem; position: relative; }
 .item li::before, .points li::before { content: ""; position: absolute; left: 0; top: .8em; width: .375rem; height: 1px; background: var(--muted); }
 .org { color: var(--muted); }
