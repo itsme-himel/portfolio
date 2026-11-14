@@ -1,11 +1,12 @@
 :root {
-  --bg: #ffffff; --fg: #15181d; --muted: #5a626e; --line: #d9dce1; --accent: #0d5c4b;
+  /* IBM Carbon greys and blue, to go with IBM Plex */
+  --bg: #f4f4f4; --surface: #ffffff; --fg: #161616; --muted: #525252; --line: #e0e0e0; --accent: #0f62fe;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #14171c; --fg: #e8eaee; --muted: #9aa2ae; --line: #2b3038; --accent: #6fd3b5; }
+  :root { --bg: #161616; --surface: #262626; --fg: #f4f4f4; --muted: #c6c6c6; --line: #393939; --accent: #78a9ff; }
 }
 
 * { box-sizing: border-box; }
@@ -53,7 +54,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 /* cards are not links, so they get no hover effect */
-.grid article { display: flex; flex-direction: column; gap: .5rem; padding: 1.125rem 1.25rem; border: 1px solid var(--line); border-radius: 6px; }
+.grid article { display: flex; flex-direction: column; gap: .5rem; padding: 1.125rem 1.25rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
 .grid h3 { font-size: 1rem; font-weight: 600; line-height: 1.35; }
 .grid p { color: var(--muted); }
 .grid .result { font: 500 .8125rem/1.6 var(--mono); color: var(--accent); }
@@ -128,7 +129,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 }
 
 @media print {
-  :root { --bg: #fff; --fg: #000; --muted: #444; --line: #bbb; --accent: #000; }
+  :root { --bg: #fff; --surface: #fff; --fg: #000; --muted: #444; --line: #bbb; --accent: #000; }
   nav, .skip { display: none; }
   .page { display: block; }
   .side { border: 0; padding: 0 0 1rem; }

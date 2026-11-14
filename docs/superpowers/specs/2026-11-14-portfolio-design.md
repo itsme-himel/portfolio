@@ -32,8 +32,7 @@ Buzzwords or filler sentences. Empty sections. Anything that looks like a templa
   expected date. No claimed results.
 - Type: IBM Plex Sans for text, IBM Plex Mono for dates and stack labels. 16px base, text columns
   capped near 62 characters.
-- Colour: neutral greys with one dark green accent for section labels, links and the current nav
-  item. Light and dark via `prefers-color-scheme`. Contrast at least 4.5:1.
+- Colour: IBM Carbon greys with its blue as the single accent (labels, links, results, current nav item); light grey page with white cards. Light and dark via `prefers-color-scheme`. Contrast at least 4.5:1.
 - Behaviour: nav links are in-page anchors; a small inline script underlines the current section in the nav. Sections below the first screen fade in on scroll; all motion is off under reduced-motion, without JavaScript, and in print.
 
 ## Builder's calls (not decided by the owner)
