@@ -147,19 +147,26 @@
   </main>
 </div>
 <script>
-// Mark the nav link of the section currently being read.
-// shortcut: a short section near the page end can be skipped on very tall screens; switch to per-section observers if that matters.
+// Underline the nav link of the section being read.
 const sections = [...document.querySelectorAll('main section')];
 const links = [...document.querySelectorAll('nav a')];
+let clicked = location.hash; // a clicked link stays marked until the reader scrolls by hand
 function spy() {
-  const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
-  const current = atEnd ? sections.at(-1)
-    : sections.findLast(s => s.getBoundingClientRect().top <= 120) || sections[0];
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const tops = sections.map(s => s.getBoundingClientRect().top + scrollY);
+  // Sections near the page end can never reach the top, so over the final
+  // stretch the reading line slides from the top of the viewport to the bottom.
+  const lastReachable = Math.max(0, ...tops.filter(t => t <= max));
+  const slide = Math.min(1, Math.max(0, (scrollY - lastReachable) / Math.max(1, max - lastReachable)));
+  const line = scrollY + 120 + slide * (innerHeight - 120);
+  const current = clicked || '#' + sections[Math.max(0, tops.findLastIndex(t => t <= line))].id;
   for (const a of links) {
-    if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'location');
+    if (a.hash === current) a.setAttribute('aria-current', 'location');
     else a.removeAttribute('aria-current');
   }
 }
+for (const a of links) a.addEventListener('click', () => { clicked = a.hash; spy(); });
+for (const e of ['wheel', 'touchmove', 'keydown']) addEventListener(e, () => { clicked = ''; }, { passive: true });
 addEventListener('scroll', spy, { passive: true });
 addEventListener('resize', spy);
 spy();
