@@ -75,8 +75,15 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 /* hyphens keep justified lines from opening wide gaps */
 .lede, .item li { text-align: justify; hyphens: auto; } /* project cards are too narrow to justify cleanly */
 
-.plain { display: grid; gap: .625rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-.plain li { display: flex; justify-content: space-between; align-items: baseline; gap: .125rem 1rem; flex-wrap: wrap; }
+/* Certifications and Activities: ruled rows, name over issuer, date on the right. */
+.rows { display: grid; }
+.rows .item { padding: .75rem 0; gap: 0 1rem; }
+.rows .item:last-child { padding-bottom: 0; }
+.rows h3 { font-weight: 500; }
+.rows .org { grid-column: 1; }
+.verify { text-align: right; font-size: .8125rem; font-weight: 500; white-space: nowrap; }
+.verify a { display: inline-block; padding: .125rem 0; }
+.note { grid-column: 1 / -1; margin-top: .25rem; max-width: 62ch; }
 
 @media (max-width: 48rem) {
   .page { grid-template-columns: 1fr; }
@@ -87,6 +94,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   main { padding: 2rem 1.25rem 3rem; gap: 2.5rem; }
   section { scroll-margin-top: 1.25rem; }
   .item, .skills > div { grid-template-columns: 1fr; }
+  .rows .item { grid-template-columns: minmax(0, 1fr) auto; }
   .grid article { padding: 1.125rem 1.125rem; }
 }
 
@@ -159,5 +167,5 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   .page { display: block; }
   .side { border: 0; padding: 0 0 1rem; }
   main { padding: 0; gap: 1.5rem; }
-  .item, .plain li { break-inside: avoid; }
+  .item { break-inside: avoid; }
 }
