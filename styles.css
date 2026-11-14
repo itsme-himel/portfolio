@@ -52,7 +52,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .org { color: var(--muted); }
 .date { font: .8125rem/1.9 var(--mono); color: var(--muted); white-space: nowrap; }
 
-/* Projects: one full-width card each: title, summary, points, then the tech stack under a rule. Cards are not links, so no hover effect. */
+/* Projects: one full-width card each: title, summary, points, then the tech stack under a rule. */
 .grid { display: grid; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .grid article { display: grid; gap: .5rem; padding: 1.25rem 1.5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
 .grid .head { display: flex; justify-content: space-between; align-items: baseline; gap: .125rem 1rem; flex-wrap: wrap; }
@@ -137,6 +137,12 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   .bar { transition: background-color .25s ease, border-color .25s ease; }
   .where { transition: opacity .25s ease, visibility 0s .25s; }
   .past .where { transition: opacity .25s ease; }
+  /* a soft light follows the mouse inside a project card, and its border picks up the accent */
+  .grid article { position: relative; isolation: isolate; overflow: hidden; transition: border-color .25s ease; }
+  .grid article::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .3s ease;
+    background: radial-gradient(18rem circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 13%, transparent), transparent 70%); }
+  .grid article:hover::before { opacity: 1; }
+  .grid article:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
   /* A click or tap leaves three thin rings that spread and fade, like a drop on water.
      A resting mouse gets the same, fainter (--o is the starting opacity). */
   .ripple, .ripple::before, .ripple::after { position: fixed; width: 20rem; height: 20rem; margin: -10rem 0 0 -10rem; border-radius: 50%; border: 1px solid var(--accent);

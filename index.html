@@ -173,7 +173,7 @@
       <h2 id="h-skills">Skills</h2>
       <dl class="skills">
         <div><dt>Languages and frameworks</dt><dd><ul class="chips"><li>Python</li><li>SQL</li><li>Flask</li></ul></dd></div>
-        <div><dt>Machine learning</dt><dd><ul class="chips"><li>TensorFlow</li><li>Keras</li><li>CNN</li><li>ResNet</li><li>GAN (CycleGAN)</li><li>LSTM</li><li>RNN</li><li>Prophet</li><li>Pandas</li><li>NumPy</li></ul></dd></div>
+        <div><dt>Libraries</dt><dd><ul class="chips"><li>TensorFlow</li><li>Keras</li><li>CNN</li><li>ResNet</li><li>GAN (CycleGAN)</li><li>LSTM</li><li>RNN</li><li>Prophet</li><li>Pandas</li><li>NumPy</li></ul></dd></div>
         <div><dt>Generative AI</dt><dd><ul class="chips"><li>Large language models (LLMs)</li><li>Retrieval-augmented generation (RAG)</li><li>Agent workflows</li></ul></dd></div>
         <div><dt>Data and cloud</dt><dd><ul class="chips"><li>PySpark</li><li>Spark SQL</li><li>Databricks</li><li>Delta Lake</li><li>Unity Catalog</li><li>Azure Data Factory</li><li>Google Cloud (GCP)</li></ul></dd></div>
       </dl>
@@ -256,7 +256,7 @@ matchMedia('(min-width: 48.01rem)').addEventListener('change', () => setMenu(fal
 if (window.IntersectionObserver)
   new IntersectionObserver(([e]) => root.classList.toggle('past', !e.isIntersecting)).observe(document.querySelector('h1'));
 
-// Ripples: one on every click or tap, and fainter ones while the mouse rests. Off under reduced motion.
+// Pointer effects: a light in project cards, a ripple on every click or tap, and fainter ripples while the mouse rests. Off under reduced motion.
 if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
   function ripple(x, y, strength) {
     const ring = document.createElement('span');
@@ -265,6 +265,13 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     document.body.append(ring);
     setTimeout(() => ring.remove(), 1500); // after the last ring has faded
   }
+  // Project cards: a soft light follows the mouse inside the card.
+  for (const card of document.querySelectorAll('.grid article'))
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', e.clientX - r.left + 'px');
+      card.style.setProperty('--my', e.clientY - r.top + 'px');
+    });
   addEventListener('pointerdown', e => ripple(e.clientX, e.clientY, .55));
   // A mouse that rests gets a ripple at 5s, 10s and 15s, each fainter, then nothing until it moves again.
   const fade = [.34, .24, .15];
