@@ -66,9 +66,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .stack ul, .chips { display: flex; flex-wrap: wrap; gap: .375rem; }
 .stack li, .chips li { font: 400 .75rem/1.5 var(--mono); color: var(--muted); padding: .0625rem .5rem; border: 1px solid var(--line); border-radius: 4px; }
 /* About: the headline topics, as blue-tinted labels so they stand apart from the grey tool labels below. */
-.focus { display: grid; gap: .625rem; margin-top: .375rem; }
-.focus > div { display: flex; align-items: baseline; flex-wrap: wrap; gap: .375rem .875rem; }
-.focus dt { flex: 0 0 9.5rem; font-size: .6875rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+.focus { margin-top: .375rem; }
 .focus li { font-size: .8125rem; color: var(--fg); padding: .1875rem .625rem; border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
 /* Skills: group name on the left, the same labels as the project tech stacks on the right. */
@@ -99,7 +97,6 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   section { scroll-margin-top: 1.25rem; }
   .item, .skills > div { grid-template-columns: 1fr; }
   .rows .item { grid-template-columns: minmax(0, 1fr) auto; }
-  .focus dt { flex-basis: 100%; }
   .grid article { padding: 1.125rem 1.125rem; }
 }
 
