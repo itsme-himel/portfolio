@@ -59,7 +59,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .grid h3 .tags { white-space: nowrap; }
 
 /* hyphens keep justified lines from opening wide gaps */
-.lede, .item li, .grid p:not(.tags) { text-align: justify; hyphens: auto; }
+.lede, .item li { text-align: justify; hyphens: auto; } /* project cards are too narrow to justify cleanly */
 
 .plain { display: grid; gap: .625rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .plain li { display: flex; justify-content: space-between; align-items: baseline; gap: .125rem 1rem; flex-wrap: wrap; }
