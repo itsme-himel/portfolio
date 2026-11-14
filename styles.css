@@ -5,9 +5,12 @@
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   color-scheme: light dark;
 }
+/* Dark values apply when the device asks for dark (unless the visitor chose light) or when the visitor chose dark. */
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #161616; --surface: #262626; --fg: #f4f4f4; --muted: #c6c6c6; --line: #393939; --accent: #78a9ff; }
+  :root:not([data-theme="light"]) { --bg: #161616; --surface: #262626; --fg: #f4f4f4; --muted: #c6c6c6; --line: #393939; --accent: #78a9ff; }
 }
+:root[data-theme="dark"] { --bg: #161616; --surface: #262626; --fg: #f4f4f4; --muted: #c6c6c6; --line: #393939; --accent: #78a9ff; color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
 
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 1rem/1.6 var(--sans); }
@@ -32,11 +35,20 @@ nav a { display: block; padding: .3rem 0; color: var(--muted); text-decoration: 
 nav a:hover { color: var(--fg); text-decoration-color: var(--line); }
 nav a[aria-current] { color: var(--fg); font-weight: 500; text-decoration-color: var(--accent); }
 /* a sidebar taller than the window would hide its last links for good */
-@media (max-height: 45rem) { .stick { position: static; } }
+@media (max-height: 49rem) { .stick { position: static; } }
 
 .contact { display: grid; grid-template-columns: repeat(2, max-content); gap: 0 1.5rem; font-size: .875rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .contact a { display: inline-block; padding: .25rem 0; } /* 24px+ tap target */
-.bar, .scrim, nav .contact { display: none; } /* phone menu parts, switched on below */
+.bar, .scrim, nav .contact, nav .theme { display: none; } /* phone menu parts, switched on below */
+
+/* Theme switch: three icon buttons. Needs the script, so it is hidden without it. */
+.theme { display: none; }
+.js .stick > .theme { display: inline-flex; justify-self: start; }
+.theme { gap: 2px; padding: 2px; border: 1px solid var(--line); border-radius: 6px; }
+.theme button { display: grid; place-items: center; width: 2.125rem; height: 1.75rem; padding: 0; border: 0; border-radius: 4px; background: none; color: var(--muted); cursor: pointer; }
+.theme button:hover { color: var(--fg); }
+.theme button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: 0 0 0 1px var(--line); }
+.theme button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 main { padding: 4rem 2.5rem 5rem; display: grid; gap: 3rem; }
 section { display: grid; gap: 1rem; scroll-margin-top: 4rem; }
@@ -126,6 +138,8 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   .js nav .contact a { font-size: .9375rem; padding: .4rem 0; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
   .js .scrim { display: block; position: fixed; inset: 0; z-index: 20; background: rgb(0 0 0 / .45); opacity: 0; visibility: hidden; }
+  .js .stick > .theme { display: none; }
+  .js nav .theme { display: inline-flex; margin-top: 1.25rem; }
   .js.open .scrim { opacity: 1; visibility: visible; }
   .js.open body { overflow: hidden; }
 }
@@ -135,6 +149,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 @media screen and (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
   a { transition: color .2s, text-decoration-color .2s; }
+  body { transition: background-color .25s ease, color .25s ease; }
   section, section > * { transition: opacity .4s ease-out, transform .4s ease-out; }
   section.pre { opacity: 0; transition: none; }
   section.pre > * { transform: translateY(.5rem); transition: none; }
@@ -164,7 +179,7 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 
 @media print {
   :root { --bg: #fff; --surface: #fff; --fg: #000; --muted: #444; --line: #bbb; --accent: #000; }
-  nav, .skip { display: none; }
+  nav, .skip, .theme { display: none !important; }
   .page { display: block; }
   .side { border: 0; padding: 0 0 1rem; }
   main { padding: 0; gap: 1.5rem; }
