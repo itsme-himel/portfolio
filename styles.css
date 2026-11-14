@@ -51,12 +51,15 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .org { color: var(--muted); }
 .date { font: .8125rem/1.9 var(--mono); color: var(--muted); white-space: nowrap; }
 
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-.grid h3 { font-size: 1rem; font-weight: 600; }
-.grid p { color: var(--muted); margin-top: .25rem; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+/* cards are not links, so they get no hover effect */
+.grid article { display: flex; flex-direction: column; gap: .5rem; padding: 1.125rem 1.25rem; border: 1px solid var(--line); border-radius: 6px; }
+.grid h3 { font-size: 1rem; font-weight: 600; line-height: 1.35; }
+.grid p { color: var(--muted); }
+.grid .result { font: 500 .8125rem/1.6 var(--mono); color: var(--accent); }
+.grid .pending { color: var(--muted); }
 .tags { font: 400 .75rem/1.6 var(--mono); color: var(--muted); }
-.grid p.tags { margin-top: .5rem; }
-.grid h3 .tags { white-space: nowrap; }
+.grid .tags { margin-top: auto; padding-top: .5rem; }
 
 /* hyphens keep justified lines from opening wide gaps */
 .lede, .item li { text-align: justify; hyphens: auto; } /* project cards are too narrow to justify cleanly */
