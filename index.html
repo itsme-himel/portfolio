@@ -116,27 +116,54 @@
       <div class="grid">
         <article>
           <h3>Potato leaf disease classification</h3>
-          <p class="result">99% accuracy</p>
-          <p>A CNN that classifies potato leaf diseases from photos. Trained with data augmentation and model versioning, and served through a Flask API on Google Cloud.</p>
-          <p class="tags">TensorFlow · Keras · Flask · GCP</p>
+          <p>An end-to-end image classifier for potato leaf diseases, from training to a deployed API.</p>
+          <ul class="points">
+            <li>Trained a CNN that classifies leaf photos with 99% accuracy.</li>
+            <li>Used data augmentation and model versioning during training.</li>
+            <li>Deployed the model as a Flask API on Google Cloud.</li>
+          </ul>
+          <div class="stack">
+            <p>Tech stack</p>
+            <ul><li>TensorFlow</li><li>Keras</li><li>tf.data</li><li>NumPy</li><li>Flask</li><li>Google Cloud</li></ul>
+          </div>
         </article>
         <article>
           <h3>Brain tumor classification and segmentation</h3>
-          <p class="result">98% precision</p>
-          <p>A ResNet-based classifier for brain tumors in MRI scans, plus a segmentation model that outlines the tumor region.</p>
-          <p class="tags">TensorFlow · Keras · ResNet</p>
+          <p>Deep learning models that detect brain tumors in MRI scans and outline the tumor region.</p>
+          <ul class="points">
+            <li>Built a ResNet-based classifier that reaches 98% precision.</li>
+            <li>Trained a separate segmentation model that outlines the tumor region.</li>
+            <li>Trained with the Adam optimizer and batch normalization.</li>
+          </ul>
+          <div class="stack">
+            <p>Tech stack</p>
+            <ul><li>TensorFlow</li><li>Keras</li><li>ResNet</li><li>Pandas</li><li>NumPy</li></ul>
+          </div>
         </article>
         <article>
           <h3>Hourly energy consumption forecasting</h3>
-          <p class="result">R² 0.97</p>
-          <p>Time series models for hourly energy demand. Compared Prophet with LSTM and RNN models using k-fold validation, after outlier removal and scaling.</p>
-          <p class="tags">Pandas · Prophet · LSTM</p>
+          <p>Forecasting models for hourly energy demand, compared across statistical and neural approaches.</p>
+          <ul class="points">
+            <li>Reached an R² of 0.97 on hourly consumption.</li>
+            <li>Compared Prophet with LSTM and RNN models.</li>
+            <li>Cleaned the data with outlier removal and scaling, and validated with k-fold.</li>
+          </ul>
+          <div class="stack">
+            <p>Tech stack</p>
+            <ul><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Prophet</li><li>LSTM</li><li>RNN</li></ul>
+          </div>
         </article>
         <article>
-          <h3>Formula 1 racing data analytics</h3>
-          <p class="result pending">In progress</p>
-          <p>A data pipeline for Formula 1 race data: ingestion with Azure Data Factory, transformation in PySpark and Spark SQL, storage in Delta Lake governed by Unity Catalog.</p>
-          <p class="tags">Databricks · PySpark · Azure</p>
+          <div class="head"><h3>Formula 1 racing data analytics</h3><p class="date">In progress</p></div>
+          <p>A data engineering pipeline for Formula 1 race data on Databricks and Azure.</p>
+          <ul class="points">
+            <li>Ingests race data with Azure Data Factory.</li>
+            <li>Transforms it with PySpark and Spark SQL into Delta Lake tables governed by Unity Catalog.</li>
+          </ul>
+          <div class="stack">
+            <p>Tech stack</p>
+            <ul><li>Databricks</li><li>PySpark</li><li>Spark SQL</li><li>Delta Lake</li><li>Unity Catalog</li><li>Azure Data Factory</li></ul>
+          </div>
         </article>
       </div>
     </section>

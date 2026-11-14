@@ -27,7 +27,7 @@ Buzzwords or filler sentences. Empty sections. Anything that looks like a templa
   a wrapped row of links.
 - Section order: About, Experience, Research, Education, Projects, Certifications, Activities.
 - Entries: title, organisation, date right-aligned in monospace, then up to three plain bullets.
-  Projects are a two-column grid with a one-line description and stack labels.
+  Projects are full-width cards: title, one-line summary, two or three points, then a "Tech stack" row of library labels under a rule.
 - Thesis: its own Research section, marked "In progress", with working title, supervisor and
   expected date. No claimed results.
 - Type: IBM Plex Sans for text, IBM Plex Mono for dates and stack labels. 16px base, text columns
