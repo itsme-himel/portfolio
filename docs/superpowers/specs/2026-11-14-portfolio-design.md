@@ -22,6 +22,7 @@ Buzzwords or filler sentences. Empty sections. Anything that looks like a templa
 
 ## Design (B)
 - Layout: 15rem left column (name, one-line role, section nav, contact links, CV link), sticky on
+- Phone: a slim bar stays at the top showing the current section (and the name once the heading scrolls away) with a Menu button; the nav and the four links slide in from the right as a panel. Without JavaScript the nav stays in the page.
   wide screens; content column on the right. Below ~640px the sidebar becomes a header and the nav
   a wrapped row of links.
 - Section order: About, Experience, Research, Education, Projects, Certifications, Activities.

@@ -13,9 +13,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js'); // set before first paint so the phone layout does not jump</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<!-- Phone only, and only once the script runs: a bar that stays on screen and opens the nav as a side panel. -->
+<div class="bar">
+  <p class="where"><b>Sakib Hosen Himel</b><span id="bar-section">About</span></p>
+  <button type="button" id="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+</div>
+<div class="scrim"></div>
 <div class="page">
   <header class="side">
     <div class="stick">
@@ -23,7 +30,7 @@
         <h1>Sakib Hosen Himel</h1>
         <p class="role">Research Assistant, Fraunhofer IEE<br>MSc Data Science, BHT Berlin</p>
       </div>
-      <nav aria-label="Sections">
+      <nav id="menu" aria-label="Sections">
         <ol>
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
@@ -161,6 +168,7 @@
 // Underline the nav link of the section being read.
 const sections = [...document.querySelectorAll('main section')];
 const links = [...document.querySelectorAll('nav a')];
+const barSection = document.getElementById('bar-section');
 let clicked = location.hash; // a clicked link stays marked until the reader scrolls by hand
 function spy() {
   const max = document.documentElement.scrollHeight - innerHeight;
@@ -172,7 +180,7 @@ function spy() {
   const line = scrollY + 120 + slide * (innerHeight - 120);
   const current = clicked || '#' + sections[Math.max(0, tops.findLastIndex(t => t <= line))].id;
   for (const a of links) {
-    if (a.hash === current) a.setAttribute('aria-current', 'location');
+    if (a.hash === current) { a.setAttribute('aria-current', 'location'); barSection.textContent = a.textContent; }
     else a.removeAttribute('aria-current');
   }
 }
@@ -190,6 +198,25 @@ if (window.IntersectionObserver) {
   });
   for (const s of sections) if (s.getBoundingClientRect().top >= innerHeight) { s.classList.add('pre'); io.observe(s); }
 }
+
+// Phone menu: the nav slides in from the right as a panel. Without this script the nav stays in the page.
+const root = document.documentElement, nav = document.getElementById('menu'), btn = document.getElementById('menu-btn');
+const behind = [document.querySelector('main'), ...document.querySelectorAll('.stick > :not(nav)')];
+nav.append(document.querySelector('.contact').cloneNode(true)); // the four links, repeated inside the panel
+function setMenu(open) {
+  root.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
+  btn.textContent = open ? 'Close' : 'Menu';
+  for (const el of behind) el.inert = open; // keeps keyboard focus inside the panel
+}
+btn.addEventListener('click', () => setMenu(!root.classList.contains('open')));
+document.querySelector('.scrim').addEventListener('click', () => setMenu(false));
+nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+matchMedia('(min-width: 48.01rem)').addEventListener('change', () => setMenu(false));
+// The name joins the bar once the heading has scrolled away.
+if (window.IntersectionObserver)
+  new IntersectionObserver(([e]) => root.classList.toggle('past', !e.isIntersecting)).observe(document.querySelector('h1'));
 </script>
 </body>
 </html>
