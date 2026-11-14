@@ -29,6 +29,7 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#research">Research</a></li>
           <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#certifications">Certifications</a></li>
           <li><a href="#activities">Activities</a></li>
         </ol>
@@ -92,6 +93,32 @@
         <p class="date">2017 – 2021</p>
         <p class="org">Daffodil International University</p>
       </article>
+    </section>
+
+    <section id="projects" aria-labelledby="h-projects">
+      <h2 id="h-projects">Projects</h2>
+      <div class="grid">
+        <article>
+          <h3>Potato leaf disease classification</h3>
+          <p>A CNN that classifies potato leaf diseases from photos, reaching 99% accuracy. Trained with data augmentation and model versioning, and served through a Flask API on Google Cloud.</p>
+          <p class="tags">TensorFlow · Keras · Flask · GCP</p>
+        </article>
+        <article>
+          <h3>Brain tumor classification and segmentation</h3>
+          <p>A ResNet-based classifier for brain tumors in MRI scans with 98% precision, plus a segmentation model that outlines the tumor region.</p>
+          <p class="tags">TensorFlow · Keras · ResNet</p>
+        </article>
+        <article>
+          <h3>Hourly energy consumption forecasting</h3>
+          <p>Time series models for hourly energy demand, reaching an R² of 0.97. Compared Prophet with LSTM and RNN models using k-fold validation, after outlier removal and scaling.</p>
+          <p class="tags">Pandas · Prophet · LSTM</p>
+        </article>
+        <article>
+          <h3>Formula 1 racing data analytics</h3>
+          <p>A data pipeline for Formula 1 race data: ingestion with Azure Data Factory, transformation in PySpark and Spark SQL, storage in Delta Lake governed by Unity Catalog.</p>
+          <p class="tags">Databricks · PySpark · Delta Lake · Azure</p>
+        </article>
+      </div>
     </section>
 
     <section id="certifications" aria-labelledby="h-certifications">
