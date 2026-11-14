@@ -33,7 +33,8 @@ Buzzwords or filler sentences. Empty sections. Anything that looks like a templa
   capped near 62 characters.
 - Colour: neutral greys with one dark green accent for section labels, links and the current nav
   item. Light and dark via `prefers-color-scheme`. Contrast at least 4.5:1.
-- Behaviour: nav links are in-page anchors; the current section is highlighted. No other script.
+- Behaviour: nav links are in-page anchors. No script.
+- Projects section is left out until there is content for it.
 
 ## Builder's calls (not decided by the owner)
 - Plain `index.html` + `styles.css`, no framework or build step.
