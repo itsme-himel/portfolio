@@ -85,7 +85,6 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
 .rows .org { grid-column: 1; }
 .verify { text-align: right; font-size: .8125rem; font-weight: 500; white-space: nowrap; }
 .verify a { display: inline-block; padding: .125rem 0; }
-.note { grid-column: 1 / -1; margin-top: .25rem; max-width: 62ch; }
 
 @media (max-width: 48rem) {
   .page { grid-template-columns: 1fr; }
