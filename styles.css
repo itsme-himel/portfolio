@@ -126,6 +126,14 @@ h2 { font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform:
   .bar { transition: background-color .25s ease, border-color .25s ease; }
   .where { transition: opacity .25s ease, visibility 0s .25s; }
   .past .where { transition: opacity .25s ease; }
+  /* A click or tap leaves three thin rings that spread and fade, like a drop on water.
+     A resting mouse gets the same, fainter (--o is the starting opacity). */
+  .ripple, .ripple::before, .ripple::after { position: fixed; width: 20rem; height: 20rem; margin: -10rem 0 0 -10rem; border-radius: 50%; border: 1px solid var(--accent);
+    pointer-events: none; z-index: 60; opacity: 0; animation: ripple .95s ease-out forwards; }
+  .ripple::before, .ripple::after { content: ""; position: absolute; inset: 0; margin: -1px; }
+  .ripple::before { animation-delay: .16s; }
+  .ripple::after { animation-delay: .32s; }
+  @keyframes ripple { from { transform: scale(.04); opacity: var(--o, .55); } to { transform: scale(1); opacity: 0; } }
 }
 
 @media print {

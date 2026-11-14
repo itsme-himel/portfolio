@@ -217,6 +217,29 @@ matchMedia('(min-width: 48.01rem)').addEventListener('change', () => setMenu(fal
 // The name joins the bar once the heading has scrolled away.
 if (window.IntersectionObserver)
   new IntersectionObserver(([e]) => root.classList.toggle('past', !e.isIntersecting)).observe(document.querySelector('h1'));
+
+// Ripples: one on every click or tap, and fainter ones while the mouse rests. Off under reduced motion.
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+  function ripple(x, y, strength) {
+    const ring = document.createElement('span');
+    ring.className = 'ripple'; ring.setAttribute('aria-hidden', 'true');
+    ring.style.left = x + 'px'; ring.style.top = y + 'px'; ring.style.setProperty('--o', strength);
+    document.body.append(ring);
+    setTimeout(() => ring.remove(), 1500); // after the last ring has faded
+  }
+  addEventListener('pointerdown', e => ripple(e.clientX, e.clientY, .55));
+  // A mouse that rests gets a ripple at 5s, 10s and 15s, each fainter, then nothing until it moves again.
+  const fade = [.34, .24, .15];
+  let idle, mx, my;
+  function arm(n) {
+    clearTimeout(idle);
+    if (n >= fade.length || mx === undefined) return;
+    idle = setTimeout(() => { if (!document.hidden) ripple(mx, my, fade[n]); arm(n + 1); }, 5000);
+  }
+  addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { mx = e.clientX; my = e.clientY; arm(0); } });
+  for (const ev of ['scroll', 'pointerdown', 'keydown']) addEventListener(ev, () => arm(0), { passive: true });
+  root.addEventListener('pointerleave', () => { mx = undefined; clearTimeout(idle); });
+}
 </script>
 </body>
 </html>

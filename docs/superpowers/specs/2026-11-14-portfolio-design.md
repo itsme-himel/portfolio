@@ -33,7 +33,7 @@ Buzzwords or filler sentences. Empty sections. Anything that looks like a templa
 - Type: IBM Plex Sans for text, IBM Plex Mono for dates and stack labels. 16px base, text columns
   capped near 62 characters.
 - Colour: IBM Carbon greys with its blue as the single accent (labels, links, results, current nav item); light grey page with white cards. Light and dark via `prefers-color-scheme`. Contrast at least 4.5:1.
-- Behaviour: nav links are in-page anchors; a small inline script underlines the current section in the nav. Sections below the first screen fade in on scroll; all motion is off under reduced-motion, without JavaScript, and in print.
+- Behaviour: nav links are in-page anchors; a small inline script underlines the current section in the nav. Sections below the first screen fade in on scroll; A click or tap leaves a three-ring ripple; a resting mouse gets fainter ripples at 5, 10 and 15 seconds, then none until it moves. all motion is off under reduced-motion, without JavaScript, and in print.
 
 ## Builder's calls (not decided by the owner)
 - Plain `index.html` + `styles.css`, no framework or build step.
