@@ -146,5 +146,23 @@
     </section>
   </main>
 </div>
+<script>
+// Mark the nav link of the section currently being read.
+// shortcut: a short section near the page end can be skipped on very tall screens; switch to per-section observers if that matters.
+const sections = [...document.querySelectorAll('main section')];
+const links = [...document.querySelectorAll('nav a')];
+function spy() {
+  const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+  const current = atEnd ? sections.at(-1)
+    : sections.findLast(s => s.getBoundingClientRect().top <= innerHeight * 0.4) || sections[0];
+  for (const a of links) {
+    if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'location');
+    else a.removeAttribute('aria-current');
+  }
+}
+addEventListener('scroll', spy, { passive: true });
+addEventListener('resize', spy);
+spy();
+</script>
 </body>
 </html>
